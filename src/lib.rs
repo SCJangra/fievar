@@ -15,7 +15,7 @@ macro_rules! gen_impl {
 
         quote! (
             impl #strenm {
-                fn $fn_name() -> &'static [&'static str] {
+                pub fn $fn_name() -> &'static [&'static str] {
                     &[#(#fievars),*]
                 }
             }
