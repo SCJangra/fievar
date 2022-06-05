@@ -1,4 +1,4 @@
-//! This crate provides procedural macrs to generate static slices
+//! This crate provides procedural macrs to generate functions that return static slices
 //! of struct field names and enum variant names.
 
 use proc_macro::TokenStream;
