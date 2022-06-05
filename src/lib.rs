@@ -1,3 +1,6 @@
+//! This crate provides procedural macrs to generate static slices
+//! of struct field names and enum variant names.
+
 use proc_macro::TokenStream;
 use proc_macro_error::{abort, proc_macro_error};
 use quote::quote;
@@ -23,6 +26,35 @@ macro_rules! gen_impl {
     }};
 }
 
+/// Implements a `fields` method on structs that return an arry slice of struct field names.
+///
+/// # Examples
+///
+/// ```rust
+/// use fievar::Fields;
+///
+/// #[derive(Fields)]
+/// struct Token {
+///     access_token: String,
+///     refresh_token: String,
+/// }
+///
+/// assert_eq!(&["access_token", "refresh_token"], Token::fields());
+/// ```
+///
+/// You can also rename fields.
+/// ```rust
+/// use fievar::Fields;
+///
+/// #[derive(Fields)]
+/// struct Token {
+///     #[fievar(name = "accessToken")]
+///     access_token: String,
+///     refresh_token: String,
+/// }
+///
+/// assert_eq!(&["accessToken", "refresh_token"], Token::fields());
+/// ```
 #[proc_macro_derive(Fields, attributes(fievar))]
 #[proc_macro_error]
 pub fn fields(item: TokenStream) -> TokenStream {
@@ -36,6 +68,11 @@ pub fn fields(item: TokenStream) -> TokenStream {
     gen_impl!(ident, na, fields).into()
 }
 
+/// Implements a `variants` method on enums that return an arry slice of enum variant names.
+///
+/// This uses the same syntax as [`Fields`] macro. Look there for examples.
+///
+/// [`Fields`]: fields
 #[proc_macro_derive(Variants, attributes(fievar))]
 #[proc_macro_error]
 pub fn variants(item: TokenStream) -> TokenStream {
