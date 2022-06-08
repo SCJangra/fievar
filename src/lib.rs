@@ -1,5 +1,5 @@
 //! This crate provides procedural macrs to generate functions that return static slices
-//! of struct field names and enum variant names.
+//! of struct field names or enum variant names.
 
 use proc_macro::TokenStream;
 use proc_macro_error::{abort, proc_macro_error};
