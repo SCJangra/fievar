@@ -7,6 +7,7 @@ license = "MIT"
 repository = "https://github.com/SCJangra/fievar"
 readme = "README.md"
 description = "Proc macrs to generate functions that return static slices of struct field names or enum variant names."
+documentation = "https://docs.rs/fievar"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
