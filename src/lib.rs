@@ -34,12 +34,13 @@ macro_rules! gen_impl {
 /// use fievar::Fields;
 ///
 /// #[derive(Fields)]
-/// struct Token {
-///     access_token: String,
-///     refresh_token: String,
+/// struct File {
+///     id: String,
+///     name: String,
+///     mime_type: String,
 /// }
 ///
-/// assert_eq!(&["access_token", "refresh_token"], Token::fields());
+/// assert_eq!(&["id", "name", "mime_type"], File::fields());
 /// ```
 ///
 /// You can also rename fields.
@@ -47,13 +48,14 @@ macro_rules! gen_impl {
 /// use fievar::Fields;
 ///
 /// #[derive(Fields)]
-/// struct Token {
-///     #[fievar(name = "accessToken")]
-///     access_token: String,
-///     refresh_token: String,
+/// struct File {
+///     id: String,
+///     name: String,
+///     #[fievar(name = "mimeType")]
+///     mime_type: String,
 /// }
 ///
-/// assert_eq!(&["accessToken", "refresh_token"], Token::fields());
+/// assert_eq!(&["id", "name", "mimeType"], File::fields());
 /// ```
 #[proc_macro_derive(Fields, attributes(fievar))]
 #[proc_macro_error]
